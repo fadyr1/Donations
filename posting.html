@@ -1,0 +1,72 @@
+{%load static%}
+<form action="{% url 'posting' %}" method="POST">
+{%csrf_token%}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    textarea{
+        font-size: 14pt;
+        border-radius:10px;
+    }
+    
+    body {
+    
+      padding: 20px;
+      background: #f1f1f1;
+    }
+    .back{
+    font-size: 18pt;
+  text-align: center;
+  padding-right:5%;
+  width:50%;
+    }
+    .header {
+      padding: 2px;
+      font-size: 40px;
+      text-align: center;
+      background: white;
+    }
+    
+    .leftcolumn {   
+      float: right;
+      width: 100%;
+       
+     
+    }
+    
+    .card {
+       text-align: right;
+       background-color: white;
+       padding: 10px;
+       margin-top: 10px;
+      
+    }
+    
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    @media screen and (max-width: 800px) {
+      .leftcolumn, .rightcolumn {   
+        width: 100%;
+        padding: 0;
+      }
+    }
+    </style><div class="container">
+   <center> <a href="{% url 'blogs' %}" class="back">الرجوع  </a></center>
+<div class="card">
+<h2>العنوان</h2>
+<textarea cols="80" rows="2" name="title" dir="rtl"   > </textarea>
+</div>
+<br><br><div class="card"> 
+<h2>الوصف</h2>
+<textarea cols="100" rows="5" name="field" dir="rtl"> </textarea>
+<br><br>
+</div>
+ 
+<div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">ارسال</button></div>
+</form>

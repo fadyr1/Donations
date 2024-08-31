@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+p{
+  font-size: 20pt;
+}
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+   text-align: right;
+   border-color:#f4623a;
+   border-radius: 25px;
+   border-width:medium;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>مجتمع ايد للاخوة</h2>
+  <hr class="divider" />
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+        <h1>{{posts.title}}</h1>
+        <h5>{{posts.created_at}}</h5>
+        <p>{{posts.body}}</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
