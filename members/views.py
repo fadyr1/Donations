@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.core.mail import EmailMessage 
 from openpyxl import Workbook, load_workbook
-from .models import FormData
+from .models import Donators
+from .models import inNeed
+from .models import Post
+
 from django.conf import settings
  
 import os
@@ -9,10 +12,10 @@ import os
 def form_view(request):
     return render(request, 'index.html')
 
-def Donators(request):
+def donator(request):
     return render(request, 'Donator.html')
 
-def inNeed(request):
+def in_need(request):
     return render(request, 'inNeed.html')
  
 
@@ -23,7 +26,7 @@ def submit(request):
         number=request.POST['number']
         message = request.POST['message']
       
-        form_data = FormData(name=name, email=email, message=message)
+        form_data = Donators(name=name, email=email, message=message)
         form_data.save()
         
      
@@ -54,7 +57,7 @@ def submit1(request):
         message = request.POST['message']
         
      
-        form_data = FormData(name=name, email=email, message=message)
+        form_data = inNeed(name=name, email=email, message=message)
         form_data.save()
         
  
@@ -91,3 +94,21 @@ def send_email(file_path):
     )
     email.attach_file(file_path)
     email.send()
+
+def blogs(request):
+    posts = Post.objects.all()
+    return render(request, 'blogs.html', {'posts': posts})
+
+def post(request, pk):
+    posts=Post.objects.get(id=pk)
+    return render(request, 'posts.html', {'posts':posts} )
+
+def posting(request):
+   if request.method =='POST':
+     title=request.POST['title']
+     field=request.POST['field']
+     Post_data = Post(title=title, body=field)
+     Post_data.save()
+     return redirect('blogs' )
+   else:
+      return render(request,'posting.html')
